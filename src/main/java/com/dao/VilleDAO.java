@@ -1,11 +1,11 @@
 package com.dao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.dto.Ville;
 
 public interface VilleDAO {
 
-	ArrayList<Ville> findAllVilles(String codePostal) throws SQLException;
+	List<Ville> findAllVilles(String codePostal) throws SQLException;
 }

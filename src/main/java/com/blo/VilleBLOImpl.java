@@ -1,7 +1,7 @@
 package com.blo;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class VilleBLOImpl implements VilleBLO {
 	@Autowired
 	private VilleDAO villeDAO;
 	@Override
-	public ArrayList<Ville> getInfoVilles(String codePostal) throws SQLException {
+	public List<Ville> getInfoVilles(String codePostal) throws SQLException {
 		return villeDAO.findAllVilles(codePostal);
 	}
 

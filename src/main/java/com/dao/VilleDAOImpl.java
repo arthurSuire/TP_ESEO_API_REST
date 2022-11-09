@@ -2,6 +2,7 @@ package com.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dto.Coordonnee;
 import com.dto.Ville;
@@ -13,17 +14,16 @@ public class VilleDAOImpl implements VilleDAO {
 	private static final String LOGIN = "root";
 	private static final String PASSWORD = "root";
 
-	public ArrayList<Ville> findAllVilles(String codePostal) throws SQLException {
+	public List<Ville> findAllVilles(String codePostal) throws SQLException {
 		ArrayList<Ville> listVille = new ArrayList<>();
-		Connection cn = null;
-		Statement st = null;
-		try {
+		try (
+			Connection cn = DriverManager.getConnection(BDD_URL, LOGIN, PASSWORD);
+			Statement st = cn.createStatement();
+			){
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			cn = DriverManager.getConnection(BDD_URL, LOGIN, PASSWORD);
-			st = cn.createStatement();
 			String sql = "SELECT * FROM ville_france";
 			if(codePostal != null) {
-				sql = sql + " WHERE Code_postal = " + codePostal +";";
+				sql = sql + " WHERE Code_postal = " + codePostal;
 			}
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -37,10 +37,6 @@ public class VilleDAOImpl implements VilleDAO {
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} finally {
-			assert st != null;
-			st.close();
-			cn.close();
 		}
 
 		return listVille;

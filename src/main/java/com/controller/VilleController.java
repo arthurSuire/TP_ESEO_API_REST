@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class VilleController {
@@ -16,7 +16,7 @@ public class VilleController {
 
     @RequestMapping(value = "/ville", method = RequestMethod.GET)
     @ResponseBody
-    public ArrayList<Ville> get(@RequestParam (required = false, value = "codePostal") String codePostal) throws SQLException {
+    public List<Ville> get(@RequestParam (required = false, value = "codePostal") String codePostal) throws SQLException {
         return villeBLOService.getInfoVilles(codePostal);
     }
 
