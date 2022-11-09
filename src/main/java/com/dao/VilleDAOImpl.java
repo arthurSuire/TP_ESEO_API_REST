@@ -9,18 +9,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class VilleDAOImpl implements VilleDAO {
-	private final static String BDD_URL = "jdbc:mysql://localhost:3308/twic";
-	private final static String LOGIN = "root";
-	private final static String PASSWORD = "root";
+	private static final String BDD_URL = "jdbc:mysql://localhost:3308/twic";
+	private static final String LOGIN = "root";
+	private static final String PASSWORD = "root";
 
-	public ArrayList<Ville> findAllVilles(String codePostal){
-
-		Connection cn=null;
-		Statement st=null;
-		ResultSet rs=null;
-
-		ArrayList<Ville> listVille = new ArrayList<Ville>();
-
+	public ArrayList<Ville> findAllVilles(String codePostal) throws SQLException {
+		ArrayList<Ville> listVille = new ArrayList<>();
+		Connection cn = null;
+		Statement st = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			cn = DriverManager.getConnection(BDD_URL, LOGIN, PASSWORD);
@@ -29,7 +25,7 @@ public class VilleDAOImpl implements VilleDAO {
 			if(codePostal != null) {
 				sql = sql + " WHERE Code_postal = " + codePostal +";";
 			}
-			rs = st.executeQuery(sql);
+			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				Ville ville = new Ville();
 				ville.setCodeCommune(rs.getString("Code_commune_INSEE"));
@@ -42,14 +38,10 @@ public class VilleDAOImpl implements VilleDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				assert cn != null;
-				cn.close();
-				assert st != null;
-				st.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			assert st != null;
+			st.close();
+			assert cn != null;
+			cn.close();
 		}
 
 		return listVille;
