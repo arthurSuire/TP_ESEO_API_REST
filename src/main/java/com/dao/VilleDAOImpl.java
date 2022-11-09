@@ -40,7 +40,6 @@ public class VilleDAOImpl implements VilleDAO {
 		} finally {
 			assert st != null;
 			st.close();
-			assert cn != null;
 			cn.close();
 		}
 

@@ -7,5 +7,5 @@ import com.dto.Ville;
 
 public interface VilleDAO {
 
-	public ArrayList<Ville> findAllVilles(String codePostal) throws SQLException;
+	ArrayList<Ville> findAllVilles(String codePostal) throws SQLException;
 }
