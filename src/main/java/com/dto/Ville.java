@@ -5,19 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ville implements Serializable {
-    
+public class Ville {
+
 	private String codeCommune;
 	private String nomCommune;
 	private String codePostal;
+	private String ligne5;
 	private String libelleAcheminement;
 	private Coordonnee coordonnee;
-	
-	
+
 }

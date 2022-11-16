@@ -1,11 +1,12 @@
 package com.dao;
 
-import java.sql.SQLException;
 import java.util.List;
-
 import com.dto.Ville;
 
 public interface VilleDAO {
-
-	List<Ville> findAllVilles(String codePostal) throws SQLException;
+	List<Ville> findAllVille();
+	List<Ville> findVille(String code);
+	void createVille(Ville ville);
+	void modifyVille(Ville ville);
+	void deleteVille(String codeCommune);
 }

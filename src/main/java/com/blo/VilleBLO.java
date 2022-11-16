@@ -1,11 +1,12 @@
 package com.blo;
 
-import java.sql.SQLException;
 import java.util.List;
-
 import com.dto.Ville;
 
 public interface VilleBLO {
-
-	List<Ville> getInfoVilles(String codePostal) throws SQLException;
+	List<Ville> getAllVille();
+	List<Ville> getVille(String codeCommune);
+	void addVille(Ville ville);
+	void modifyVille(Ville ville);
+	void deleteVille(String codeCommune);
 }

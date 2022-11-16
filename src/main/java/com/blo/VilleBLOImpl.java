@@ -1,6 +1,5 @@
 package com.blo;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,23 @@ public class VilleBLOImpl implements VilleBLO {
 	@Autowired
 	private VilleDAO villeDAO;
 	@Override
-	public List<Ville> getInfoVilles(String codePostal) throws SQLException {
-		return villeDAO.findAllVilles(codePostal);
+	public List<Ville> getAllVille() {
+		return villeDAO.findAllVille();
 	}
-
+	@Override
+	public List<Ville> getVille(String code) {
+		return villeDAO.findVille(code);
+	}
+	@Override
+	public void addVille(Ville ville) {
+		villeDAO.createVille(ville);
+	}
+	@Override
+	public void modifyVille(Ville ville) {
+		villeDAO.modifyVille(ville);
+	}
+	@Override
+	public void deleteVille(String codeCommune) {
+		villeDAO.deleteVille(codeCommune);
+	}
 }
