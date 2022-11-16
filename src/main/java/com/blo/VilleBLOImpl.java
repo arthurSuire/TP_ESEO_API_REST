@@ -17,8 +17,12 @@ public class VilleBLOImpl implements VilleBLO {
 		return villeDAO.findAllVille();
 	}
 	@Override
-	public List<Ville> getVille(String code) {
-		return villeDAO.findVille(code);
+	public List<Ville> getVillesByCodeCommun(String code) {
+		return villeDAO.findVilleByCodeCommune(code);
+	}
+	@Override
+	public List<Ville> getVillesByCodePostal(String code) {
+		return villeDAO.findVilleByCodePostal(code);
 	}
 	@Override
 	public void addVille(Ville ville) {

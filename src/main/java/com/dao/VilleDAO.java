@@ -5,7 +5,8 @@ import com.dto.Ville;
 
 public interface VilleDAO {
 	List<Ville> findAllVille();
-	List<Ville> findVille(String code);
+	List<Ville> findVilleByCodeCommune(String code);
+	List<Ville> findVilleByCodePostal(String code);
 	void createVille(Ville ville);
 	void modifyVille(Ville ville);
 	void deleteVille(String codeCommune);

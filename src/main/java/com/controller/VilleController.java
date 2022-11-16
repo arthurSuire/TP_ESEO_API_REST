@@ -15,14 +15,20 @@ public class VilleController {
 
     @RequestMapping(value = "/villes", method = RequestMethod.GET)
     @ResponseBody
-    public List villes() {
+    public List<Ville> villes() {
         return villeBLOService.getAllVille();
     }
 
-    @RequestMapping(value = "/ville", method = RequestMethod.GET)
+    @RequestMapping(value = "/villeCC", method = RequestMethod.GET)
     @ResponseBody
-    public List ville(@RequestParam(value = "codeCommune") String code) {
-        return villeBLOService.getVille(code);
+    public List<Ville> villeCodeCommune(@RequestParam(value = "codeCommune") String code) {
+        return villeBLOService.getVillesByCodeCommun(code);
+    }
+
+    @RequestMapping(value = "/villeCP", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Ville> villeCodePostal(@RequestParam(value = "codePostal") String code) {
+        return villeBLOService.getVillesByCodePostal(code);
     }
 
     @RequestMapping(value = "/ajouter_ville", method = RequestMethod.POST)

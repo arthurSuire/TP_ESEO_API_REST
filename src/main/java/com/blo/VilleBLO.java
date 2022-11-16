@@ -5,7 +5,8 @@ import com.dto.Ville;
 
 public interface VilleBLO {
 	List<Ville> getAllVille();
-	List<Ville> getVille(String codeCommune);
+	List<Ville> getVillesByCodeCommun(String codeCommune);
+	List<Ville> getVillesByCodePostal(String codePostal);
 	void addVille(Ville ville);
 	void modifyVille(Ville ville);
 	void deleteVille(String codeCommune);

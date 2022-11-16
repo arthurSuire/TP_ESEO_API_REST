@@ -40,13 +40,38 @@ public class VilleDAOImpl implements VilleDAO {
 	}
 
 	@Override
-	public List<Ville> findVille(String codeCommune) {
+	public List<Ville> findVilleByCodeCommune(String codeCommune) {
 		ArrayList<Ville> listVilleQuery = new ArrayList<>();
 		try (
 				Connection cn = DriverManager.getConnection(BDD_URL, LOGIN, PASSWORD);
 				Statement st = cn.createStatement()
 		){
 			String sql = "SELECT * FROM ville_france WHERE code_commune_INSEE=" + codeCommune;
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				Ville ville = new Ville();
+				ville.setCodeCommune(rs.getString("Code_commune_INSEE"));
+				ville.setNomCommune(rs.getString("Nom_commune"));
+				ville.setCodePostal(rs.getString("Code_postal"));
+				ville.setLibelleAcheminement(rs.getString("Libelle_acheminement"));
+				ville.setLigne5(rs.getString("Ligne_5"));
+				ville.setCoordonnee(new Coordonnee(rs.getString("Latitude"), rs.getString("Longitude")));
+				listVilleQuery.add(ville);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listVilleQuery;
+	}
+
+	@Override
+	public List<Ville> findVilleByCodePostal(String codePostal) {
+		ArrayList<Ville> listVilleQuery = new ArrayList<>();
+		try (
+				Connection cn = DriverManager.getConnection(BDD_URL, LOGIN, PASSWORD);
+				Statement st = cn.createStatement()
+		){
+			String sql = "SELECT * FROM ville_france WHERE code_postal=" + codePostal;
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				Ville ville = new Ville();
