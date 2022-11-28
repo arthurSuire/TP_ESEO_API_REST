@@ -115,7 +115,7 @@ public class VilleDAOImpl implements VilleDAO {
 				Connection cn = DriverManager.getConnection(BDD_URL, LOGIN, PASSWORD);
 				Statement st = cn.createStatement()
 		){
-			String sql =  "UPDATE ville_france SET Nom_commune='" + ville.getNomCommune() +
+			String sql = "UPDATE ville_france SET Nom_commune='" + ville.getNomCommune() +
 					"', Code_postal='" + ville.getCodePostal() +
 					"', Libelle_acheminement='" + ville.getLibelleAcheminement() +
 					"', Ligne_5='" + ville.getLigne5() +
